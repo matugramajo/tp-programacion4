@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1>Cerrajería Fernando</h1>
+    <p>Bienvenido, ¿qué necesitás hoy?</p>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <a asp-controller="Reservas" asp-action="Create" class="btn btn-primary btn-lg">Hacer una reserva</a>
+    }
+    else
+    {
+        <a asp-controller="Login" asp-action="Index" class="btn btn-primary btn-lg">Iniciá sesión para reservar</a>
+    }
+</div>
