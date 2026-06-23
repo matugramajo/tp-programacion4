@@ -1,11 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Login";
+@{
+    ViewData["Title"] = "Iniciar Sesión";
 }
 
-<div class="text-center">
-    <h1>Bienvenido a la Cerrajería</h1>
-    <p>Iniciá sesión para continuar</p>
-    <a href="/Login/Login" class="btn btn-primary btn-lg">
-        <i class="fab fa-google"></i> Iniciar sesión con Google
-    </a>
+<div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="col-md-5">
+        <div class="card border-0 shadow-lg p-5 text-center bg-white" style="border-radius: 16px;">
+            <div class="mb-4">
+                <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-key-fill" style="font-size: 2.5rem; color: #1a1a2e;"></i>
+                </div>
+                <h2 class="fw-bold" style="color: #1a1a2e;">Cerrajería Fernando</h2>
+                <p class="text-muted">Iniciá sesión para continuar</p>
+            </div>
+            
+            <div class="d-grid gap-2 mb-3">
+                <a href="/Login/Login" class="btn btn-outline-secondary btn-lg shadow-sm py-2 px-3" style="background-color: white; color: #3c4043; border-color: #dadce0; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; transition: all 0.2s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" style="margin-right: 12px; vertical-align: middle;">
+                        <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.91c1.7-1.56 2.69-3.86 2.69-6.6z"/>
+                        <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.91-2.26c-.8.54-1.85.86-3.05.86-2.34 0-4.33-1.58-5.04-3.7H.95v2.33A9 9 0 0 0 9 18z"/>
+                        <path fill="#FBBC05" d="M3.96 10.7a5.4 5.4 0 0 1 0-3.4V4.97H.95a9 9 0 0 0 0 8.06l3.01-2.33z"/>
+                        <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.4A9 9 0 0 0 .95 4.97l3.01 2.33c.7-2.12 2.7-3.72 5.04-3.72z"/>
+                    </svg>
+                    Iniciar sesión con Google
+                </a>
+            </div>
+            
+            <small class="text-muted">Acceso seguro con tu cuenta de Google</small>
+        </div>
+    </div>
 </div>
