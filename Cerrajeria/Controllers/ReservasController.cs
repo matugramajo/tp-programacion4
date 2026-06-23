@@ -1,4 +1,4 @@
-﻿using Cerrajeria.Data;
+using Cerrajeria.Data;
 using Cerrajeria.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +24,17 @@ namespace Cerrajeria.Controllers
         // GET: Reservas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reservas.Include(r => r.Servicio);
-            return View(await applicationDbContext.ToListAsync());
+            if (User.IsInRole("Administrador"))
+            {
+                var todasLasReservas = _context.Reservas.Include(r => r.Servicio);
+                return View(await todasLasReservas.ToListAsync());
+            }
+
+            var userId = User.Identity?.Name;
+            var misReservas = _context.Reservas
+                .Include(r => r.Servicio)
+                .Where(r => r.UsuarioId == userId);
+            return View(await misReservas.ToListAsync());
         }
 
         // GET: Reservas/Details/5
@@ -75,6 +84,7 @@ namespace Cerrajeria.Controllers
         }
 
         // GET: Reservas/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,6 +106,7 @@ namespace Cerrajeria.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Telefono,Direccion,ServicioId,FechaHora,Observaciones,Estado,UsuarioId")] Reserva reserva)
         {
             if (id != reserva.Id)
@@ -128,6 +139,7 @@ namespace Cerrajeria.Controllers
         }
 
         // GET: Reservas/Delete/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,6 +161,7 @@ namespace Cerrajeria.Controllers
         // POST: Reservas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var reserva = await _context.Reservas.FindAsync(id);

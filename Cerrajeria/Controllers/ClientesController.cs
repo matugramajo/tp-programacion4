@@ -1,4 +1,4 @@
-﻿using Cerrajeria.Data;
+using Cerrajeria.Data;
 using Cerrajeria.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Cerrajeria.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class ClientesController : Controller
     {
         private readonly ApplicationDbContext _context;
