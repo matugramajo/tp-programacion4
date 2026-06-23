@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +38,7 @@ namespace Cerrajeria.Controllers
             {
                 var user = new IdentityUser { UserName = info.Principal.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value, Email = info.Principal.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value };
                 await _signInManager.UserManager.CreateAsync(user);
+                await _signInManager.UserManager.AddToRoleAsync(user, "Cliente");
                 await _signInManager.UserManager.AddLoginAsync(user, info);
                 await _signInManager.SignInAsync(user, isPersistent: false);
             }
