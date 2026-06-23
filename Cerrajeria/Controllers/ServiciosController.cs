@@ -1,4 +1,4 @@
-﻿using Cerrajeria.Data;
+using Cerrajeria.Data;
 using Cerrajeria.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Cerrajeria.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class ServiciosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -56,7 +56,7 @@ namespace Cerrajeria.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,PrecioBase,Activo")] Servicio servicio)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Activo")] Servicio servicio)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Cerrajeria.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,PrecioBase,Activo")] Servicio servicio)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Activo")] Servicio servicio)
         {
             if (id != servicio.Id)
             {
