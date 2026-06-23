@@ -59,7 +59,7 @@ namespace Cerrajeria.Controllers
         // GET: Reservas/Create
         public IActionResult Create()
         {
-            ViewData["ServicioId"] = new SelectList(_context.Servicios, "Id", "Nombre");
+            ViewData["ServicioId"] = new SelectList(_context.Servicios.Where(s => s.Activo), "Id", "Nombre");
             return View();
         }
 
@@ -79,7 +79,7 @@ namespace Cerrajeria.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ServicioId"] = new SelectList(_context.Servicios, "Id", "Nombre", reserva.ServicioId);
+            ViewData["ServicioId"] = new SelectList(_context.Servicios.Where(s => s.Activo), "Id", "Nombre", reserva.ServicioId);
             return View(reserva);
         }
 
