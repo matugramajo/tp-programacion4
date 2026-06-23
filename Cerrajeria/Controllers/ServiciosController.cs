@@ -56,7 +56,7 @@ namespace Cerrajeria.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,PrecioBase,Activo")] Servicio servicio)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Activo")] Servicio servicio)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Cerrajeria.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,PrecioBase,Activo")] Servicio servicio)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Activo")] Servicio servicio)
         {
             if (id != servicio.Id)
             {
