@@ -6,10 +6,24 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <span class="nav-link text-dark">Hola @User.Identity?.Name!</span>
+            <span class="nav-link text-dark">
+                Hola @User.Identity?.Name!
+
+                @if (User.IsInRole("Administrador"))
+                {
+                    <span class="badge bg-danger">Admin</span>
+                }
+                else
+                {
+                    <span class="badge bg-primary">Cliente</span>
+                }
+            </span>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
+            <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">
+                Cerrar sesión
+            </a>
         </li>
     }
 </ul>
